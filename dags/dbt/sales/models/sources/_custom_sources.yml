@@ -1,0 +1,10 @@
+version: 2
+
+sources: 
+  - name: sales
+    database: postgres
+    schema: sales
+    tables:
+      - name: customers
+      - name: products
+      - name: transactions

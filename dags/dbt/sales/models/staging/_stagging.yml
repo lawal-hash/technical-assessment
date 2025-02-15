@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: This table contains information about customers.
+    columns:
+      - name: customer_id
+        description: Unique identifier for a customer
+        tests:
+          - unique
+          - not_null
+      - name: customer_address
+        description: Address of the customer
+      - name: customer_age
+        description: Age of the customer
+      - name: effective_start_date
+      - name: effective_end_date
+
+  - name: stg_products
+    description: This table contains information about products.
+    columns:
+      - name: product_id
+        description: Unique identifier for a product
+        tests:
+          - not_null
+      - name: product_name
+        description: Name of the product
+      - name: product_price
+        description: Price of the product
+      - name: effective_start_date
+        description: Date in which the price of a product becomes effective
+      - name: effective_end_date
+        description: Date in which the price of a product is no longer effective
+      - name: current_indicator
+        description: Indicates if the product is current or not
+        tests:
+          - accepted_values:
+              values: [Y, N]
+
+  - name: stg_transactions
+    description: This table contains information about transactions.
+    columns:
+      - name: order_id
+        description: Identifier for the order
+        tests:
+          - not_null
+      
+      - name: product_id
+        description: Identifier for the product in the order
+        tests:
+          - not_null
+      - name: customer_id
+        description: Identifier for a customer in the order
+        tests:
+          - not_null
+      - name: product_quantity
+        description: The number of the product in the order
+        tests:
+          - not_null
+      - name: order_date
+        description: Date of the order
+
+
+      
