@@ -1,8 +1,7 @@
 import os
 from datetime import datetime
-from pathlib import Path
 
-from cosmos import DbtDag, ProjectConfig, ProfileConfig,ExecutionConfig
+from cosmos import DbtDag, ExecutionConfig, ProfileConfig, ProjectConfig
 from cosmos.profiles import PostgresUserPasswordProfileMapping
 
 airflow_home = os.environ["AIRFLOW_HOME"]
@@ -26,8 +25,8 @@ dbt_dag = DbtDag(
         dbt_executable_path=f"{airflow_home}/dbt_venv/bin/dbt",
     ),
     operator_args={
-        "install_deps": True,  # install any necessary dependencies before running any dbt command
-        "full_refresh": True,  # used only in dbt commands that support this flag
+        "install_deps": True,  
+        "full_refresh": True,  
     },
     # normal dag parameters
     schedule_interval="@daily",
