@@ -1,5 +1,6 @@
 Sales ELT
-========
+=========
+
 <div align="center">
    <img alt="Static Badge" src="https://img.shields.io/badge/Python%09-white?logo=python">
    <img alt="Static Badge" src="https://img.shields.io/badge/PostgreSQL%09-white?logo=postgresql">
@@ -19,8 +20,14 @@ Project Contents
 Your Astro project contains the following files and folders:
 
 - dags: This folder contains the Python files for your Airflow DAGs.
-    - `ingestion`: This DAG  consist to two tasks `create_task` which generate DDL for the table and `extract_data` which copies the content of the csv file into postgresql. The `extract_data` task uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically load csv file into sql.
-    - `transform`: This DAG is a dbt project with various tasks. These tasks are dbt models.
+
+  - `ingestion`: This DAG  consist to two tasks `create_task` which generate DDL for the table and `extract_data` which copies the content of the csv file into postgresql. The `extract_data` task uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically load csv file into sql.
+  - `transform`: This DAG is a dbt project with various tasks. These tasks are dbt models. The dbt models answers the following questions using [fictional sales data][https://www.kaggle.com/datasets/teluskiman/fictional-sales-data?select=sales_transactions.csv] which consist of three tables `customers`,`products` and `transactions`.
+    - Products with the most quality ordered
+    - Products with the sales revenue
+    - Age group that generated the most revenues
+    - State with the highest customer
+    - Age group with the most quantity of goods ordered
 - Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
 - include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
 - packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
