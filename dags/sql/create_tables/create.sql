@@ -1,6 +1,6 @@
 CREATE SCHEMA IF NOT EXISTS sales;
 
-CREATE TABLE IF NOT EXISTS sales.customer (
+CREATE TABLE IF NOT EXISTS sales.customers (
     cust_id int4 NOT NULL,
     cust_address varchar(50) NULL,
     cust_age int4 NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS sales.customer (
 );
 
 
-CREATE TABLE IF NOT EXISTS sales.product (
+CREATE TABLE IF NOT EXISTS sales.products (
     product_id int4 NULL,
     product_name varchar(50) NULL,
     product_price int4 NULL,
