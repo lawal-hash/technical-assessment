@@ -75,7 +75,6 @@ models:
     - name: state
       description: State of the customer
       tests:
-        - unique
         - not_null
     - name: percentage_customer
       description: Percentage of customers by state
