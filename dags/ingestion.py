@@ -13,7 +13,7 @@ DAG_ID = "ingestion"
 with DAG(
     dag_id=DAG_ID,
     start_date=datetime(2025, 2, 2),
-    schedule="@once",
+    schedule="@daily",
     catchup=False,
 ) as dag:
 
