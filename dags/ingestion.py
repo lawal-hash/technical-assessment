@@ -1,7 +1,12 @@
+import sys
+
+sys.path.append("common")
 from datetime import datetime
-from airflow.decorators import task,task_group
+
+from airflow.decorators import task_group
 from airflow.models.dag import DAG
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
+from common.utils import extract_data
 
 DAG_ID = "ingestion"
 
@@ -11,28 +16,21 @@ with DAG(
     schedule="@once",
     catchup=False,
 ) as dag:
-    
-    @task
-    def read_table():
-        """ Return list of tables names to extract """
-        return [
-            "customers",
-            "products",
-            "sales_transactions",
-        ]
-
 
     create_task = SQLExecuteQueryOperator(
-        task_id= f"create_tables",
-        sql= f"sql/create_tables/create.sql",
-        conn_id="postgres_conn_id"
-        )
-        
-       
-    extract_task = SQLExecuteQueryOperator(
-            task_id= "extract_customers_data",
-            sql= "sql/extract_data/customers.sql",   
-            conn_id="postgres_conn_id"         
-            )
+        task_id=f"create_tables",
+        sql=f"sql/create_tables/create.sql",
+        conn_id="postgres_conn_id",
+    )
 
-    create_task >> extract_task
+    @task_group
+    def load_data_to_db(table_name):
+        extract_data(table_name)
+
+    create_task >> extract_data.expand(
+        table_name=[
+            "customers",
+            "products",
+            "transactions",
+        ]
+    )
