@@ -1,5 +1,15 @@
-Overview
+Sales ELT
 ========
+<div align="center">
+   <img alt="Static Badge" src="https://img.shields.io/badge/Python%09-white?logo=python">
+   <img alt="Static Badge" src="https://img.shields.io/badge/PostgreSQL%09-white?logo=postgresql">
+   <img alt="Static Badge" src="https://img.shields.io/badge/dbt%09-white?logo=dbt">
+   <img alt="Static Badge" src="https://img.shields.io/badge/Apache%20Airflow%20-white?logo=apacheairflow&logoColor=green">
+   <img alt="Static Badge" src="https://img.shields.io/badge/Docker%20-white?logo=docker">
+   <img alt="Static Badge" src="https://img.shields.io/badge/Git%09-white?logo=git">
+</div>
+
+![pipeline](images/test.png)
 
 Welcome to Astronomer! This project was generated after you ran 'astro dev init' using the Astronomer CLI. This readme describes the contents of the project, as well as how to run Apache Airflow on your local machine.
 
@@ -8,8 +18,9 @@ Project Contents
 
 Your Astro project contains the following files and folders:
 
-- dags: This folder contains the Python files for your Airflow DAGs. By default, this directory includes one example DAG:
-    - `example_astronauts`: This DAG shows a simple ETL pipeline example that queries the list of astronauts currently in space from the Open Notify API and prints a statement for each astronaut. The DAG uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically print a statement for each astronaut. For more on how this DAG works, see our [Getting started tutorial](https://www.astronomer.io/docs/learn/get-started-with-airflow).
+- dags: This folder contains the Python files for your Airflow DAGs.
+    - `ingestion`: This DAG  consist to two tasks `create_task` which generate DDL for the table and `extract_data` which copies the content of the csv file into postgresql. The `extract_data` task uses the TaskFlow API to define tasks in Python, and dynamic task mapping to dynamically load csv file into sql.
+    - `transform`: This DAG is a dbt project with various tasks. These tasks are dbt models.
 - Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
 - include: This folder contains any additional files that you want to include as part of your project. It is empty by default.
 - packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
