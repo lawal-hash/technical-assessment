@@ -27,5 +27,5 @@ CREATE TABLE IF NOT EXISTS sales.transactions (
     cust_id int4 NULL,
     product_quantity int4 NULL,
     order_date varchar(50) NULL,
-    CONSTRAINT sales_transactions_customer_fk FOREIGN KEY (cust_id) REFERENCES sales.customer(cust_id)
+    CONSTRAINT sales_transactions_customer_fk FOREIGN KEY (cust_id) REFERENCES sales.customers(cust_id)
 );
