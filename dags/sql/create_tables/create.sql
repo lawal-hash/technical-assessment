@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS sales.product (
     CONSTRAINT product_unique UNIQUE (product_id, effective_start_date, effective_end_date)
 );
 
-CREATE TABLE IF NOT EXISTS sales.sales_transactions (
+CREATE TABLE IF NOT EXISTS sales.transactions (
     order_id int4 NULL,
     product_id int4 NULL,
     cust_id int4 NULL,
