@@ -12,10 +12,10 @@ group by
 
 
 select
-    state,
+    state as state_name,
     customer_count /(sum(customer_count) over()) as percentage_customer_per_state
 from
     customer_count_per_state)
 
-select state, round(percentage_customer_per_state* 100, 2) as percentage__customer
+select state_name, round(percentage_customer_per_state* 100, 2) as percentage__customer
 from prct_customer_per_state
