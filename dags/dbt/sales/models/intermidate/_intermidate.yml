@@ -4,7 +4,7 @@ models:
   - name: int_orders_by_state 
     description: This table contains the percentage of customers by state
     columns:
-      - name: state
+      - name: state_name
         description: State of the customer
         tests:
           - unique
