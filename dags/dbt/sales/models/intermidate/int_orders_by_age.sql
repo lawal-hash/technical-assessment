@@ -33,7 +33,7 @@ from
 select
     customer_age,
     quantities_bought,
-    revenue_generated,
+    round(cast(revenue_generated as numeric),2) as revenue_generated,
     rank_quantity_bought,
     rank_revenue_generated
 from

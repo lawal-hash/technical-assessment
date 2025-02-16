@@ -18,7 +18,7 @@ select
     product_id,
     product_name,
     quantities_sold,
-    sales_revenue,
+    round(CAST(sales_revenue AS numeric),2) as sales_revenue,
     rank() over(
     order by quantities_sold desc) as rank_quantity,
     rank() over(
